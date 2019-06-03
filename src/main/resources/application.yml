@@ -35,12 +35,8 @@ spring:
         login-password: admin
         # 配置日志输出
       filter:
-        slf4j:
+        log4j2:
           enabled: true
-          statement-create-after-log-enabled: false
-          statement-close-after-log-enabled: false
-          result-set-open-after-log-enabled: false
-          result-set-close-after-log-enabled: false
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
@@ -50,3 +46,8 @@ mybatis-plus:
   mapper-locations: classpath:mapper/**/*.xml
 server:
   port: 8081
+
+
+
+logging:
+  config: classpath:log4j2.yml
