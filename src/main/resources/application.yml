@@ -1,25 +1,52 @@
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mybatis_plus?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
     type: com.alibaba.druid.pool.DruidDataSource
-    ###数据源的其他配置
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true
-
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/mybatis_plus?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+      max-active: 100 #最大连接数
+      initial-size: 1 #初始化大小
+      max-wait: 60000 #连接等待超时时间60秒
+      min-idle: 1 #最小连接数
+      time-between-eviction-runs-millis: 60000 #间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      min-evictable-idle-time-millis: 300000 #一个连接在池中最小生存的时间，单位是毫秒
+      validation-query: select 'x'
+      test-while-idle: true #申请连接的时候检测，建议配置为true，不影响性能，并且保证安全性
+      test-on-borrow: false #获取连接时执行检测，建议关闭，影响性能
+      test-on-return: false #归还连接时执行检测，建议关闭，影响性能
+      pool-prepared-statements: false  #是否开启PSCache，PSCache对支持游标的数据库性能提升巨大，oracle建议开启，mysql下建议关闭
+      max-pool-prepared-statement-per-connection-size: 20 #开启poolPreparedStatements后生效
+      filters: stat,wall,log4j2 #配置扩展插件，常用的插件有=>stat:监控统计  log4j:日志  wall:防御sql注入
+        # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+        # Druid WebStatFilter配置
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.gif,*.png,*.jpg,*.html,*.js,*.css,*.ico,/druid/*'
+        # Druid StatViewServlet配置
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: admin
+        # 配置日志输出
+      filter:
+        slf4j:
+          enabled: true
+          statement-create-after-log-enabled: false
+          statement-close-after-log-enabled: false
+          result-set-open-after-log-enabled: false
+          result-set-close-after-log-enabled: false
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
+#    输出sql，实际开发中不要配置
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: com.xd.mybatisplus.sys.mapper
   mapper-locations: classpath:mapper/**/*.xml
+server:
+  port: 8081

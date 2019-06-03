@@ -32,8 +32,6 @@ private final Logger logger = LoggerFactory.getLogger(RoleController.class);
 public IRoleService roleService;
 
 
-
-
     @GetMapping("/all")
     @ApiOperation(value = "获取所有系统角色")
     public List<Role> all(){
