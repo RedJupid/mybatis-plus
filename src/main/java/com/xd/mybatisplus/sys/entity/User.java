@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author zxd
- * @since 2019-05-30
+ * @since 2019-06-05
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -30,6 +30,12 @@ private static final long serialVersionUID=1L;
     @ApiModelProperty(value = "主键ID")
     @TableId(value = "u_id", type = IdType.AUTO)
     private Integer uId;
+
+    @ApiModelProperty(value = "用户名")
+    private String username;
+
+    @ApiModelProperty(value = "密码")
+    private String password;
 
     @ApiModelProperty(value = "姓名")
     private String name;

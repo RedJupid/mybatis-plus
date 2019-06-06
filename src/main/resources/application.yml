@@ -37,6 +37,12 @@ spring:
       filter:
         log4j2:
           enabled: true
+  redis:
+    host: 112.74.61.201
+    port: 6379
+    password: Xd123456
+
+
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
@@ -51,5 +57,10 @@ server:
 #配置日志
 #logging:
 #  config: classpath:log4j2.yml
+
+# 自定义jwt配置
+jwt:
+  secret: wuqing #秘钥
+  expiration: 604800 #7天的秒数
 
 

@@ -5,6 +5,8 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.xd.mybatisplus.sys.entity.User">
         <id column="u_id" property="uId" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
         <result column="name" property="name" />
         <result column="age" property="age" />
         <result column="email" property="email" />
@@ -12,25 +14,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        u_id, name, age, email
+        u_id, username, password, name, age, email
     </sql>
-
-    <resultMap id="WithRoles" type="com.xd.mybatisplus.sys.vo.UserRoleVO">
-        <id column="u_id" property="uId" />
-        <result column="name" property="name" />
-        <result column="age" property="age" />
-        <result column="email" property="email" />
-        <collection property="roles" ofType="com.xd.mybatisplus.sys.entity.Role">
-            <id column="r_id" property="rId" />
-            <result column="name" property="name" />
-        </collection>
-    </resultMap>
-
-    <select id="selectWithRoles" resultMap="WithRoles" parameterType="String">
-        select u.*, r.* from sys_user u
-        left join sys_user_role ur on u.u_id = ur.user_id
-        left join sys_role r on r.r_id = ur.role_id
-        where u.name = #{name,jdbcType=VARCHAR}
-    </select>
 
 </mapper>

@@ -2,9 +2,6 @@ package com.xd.mybatisplus.sys.mapper;
 
 import com.xd.mybatisplus.sys.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xd.mybatisplus.sys.vo.UserRoleVO;
-
-import java.util.List;
 
 /**
  * <p>
@@ -12,10 +9,8 @@ import java.util.List;
  * </p>
  *
  * @author zxd
- * @since 2019-05-30
+ * @since 2019-06-05
  */
 public interface UserMapper extends BaseMapper<User> {
-
-    List<UserRoleVO> selectWithRoles(String name);
 
 }

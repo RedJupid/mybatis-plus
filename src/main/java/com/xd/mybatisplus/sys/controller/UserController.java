@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xd.mybatisplus.sys.vo.UserRoleVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,7 @@ import java.util.List;
  *   @description : User 控制器
  *   ---------------------------------
  *   @author zxd
- *   @since 2019-05-30
+ *   @since 2019-06-05
  */
 @Api(tags = {"系统用户表控制器"})
 @RestController
@@ -33,10 +32,7 @@ private final Logger logger = LoggerFactory.getLogger(UserController.class);
 public IUserService userService;
 
 
-    @GetMapping("/withRoles")
-    public List<UserRoleVO> withRoles(String name){
-        return userService.selectWithRoles(name);
-    }
+
 
     @GetMapping("/all")
     @ApiOperation(value = "获取所有系统用户表")

@@ -1,0 +1,5 @@
+[2019-06-05 16:53:42] DEBUG 137 statementLog - {conn-10001, pstmt-20000} created. SELECT  u_id,username,password,name,age,email  FROM sys_user
+[2019-06-05 16:53:42] DEBUG 137 statementLog - {conn-10001, pstmt-20000} Parameters : []
+[2019-06-05 16:53:42] DEBUG 137 statementLog - {conn-10001, pstmt-20000} Types : []
+[2019-06-05 16:53:42] DEBUG 137 statementLog - {conn-10001, pstmt-20000} executed. 8.041471 millis. SELECT  u_id,username,password,name,age,email  FROM sys_user
+[2019-06-05 16:53:42] DEBUG 137 statementLog - {conn-10001, pstmt-20000} clearParameters. 
